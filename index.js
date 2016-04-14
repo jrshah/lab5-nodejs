@@ -1,13 +1,13 @@
+require('./bootstrap')
 let path = require('path')
 let express = require('express')
 let morgan = require('morgan')
 let cookieParser = require('cookie-parser')
 let bodyParser = require('body-parser')
 let session = require('express-session')
-let MongoStore = require('connect-mongo')(session)
-let mongoose = require('mongoose')
+// let MongoStore = require('connect-mongo')(session)
+// let mongoose = require('mongoose')
 let requireDir = require('require-dir')
-let flash = require('connect-flash')
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -34,7 +34,7 @@ app.set('view engine', 'ejs') // set up ejs for templating
 // required for passport
 app.use(session({
   secret: 'ilovethenodejs',
-  store: new MongoStore({db: 'social-feeder'}),
+  // store: new MongoStore({db: 'social-feeder'}),
   resave: true,
   saveUninitialized: true
 }))
@@ -43,4 +43,4 @@ app.use(session({
 require('./app/routes')(app)
 
 // start server
-app.listen(port, ()=> console.log(`Listening @ http://127.0.0.1:${port}`))
+app.listen(port, () => console.log(`Listening @ http://127.0.0.1:${port}`))
